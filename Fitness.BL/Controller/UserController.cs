@@ -14,25 +14,17 @@ namespace Fitness.BL.Controller
         /// Пользователь.
         /// </summary>
         public User User { get; }
+
         /// <summary>
         /// Создание нового контроллера пользователя.
         /// </summary>
         /// <param name="user">Пользователь.</param>
-        public UserController(User user)
+        public UserController(string userName, string genderName, DateTime dateOfBirth, double weight, double height)
         {
-            User = user ?? throw new ArgumentNullException("Пользователь не может быть равен null.", nameof(user));
-        }
-        /// <summary>
-        /// Сохранение данных пользователя.
-        /// </summary>
-        public void Save()
-        {
-            var formatter = new BinaryFormatter();
+            // TODO: Необходима проверка входных данных
 
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, User);
-            }
+            var gender = new Gender(genderName);
+            User = new User(userName, gender, dateOfBirth, weight, height);
         }
         /// <summary>
         /// Получение данных пользователя.
@@ -45,6 +37,19 @@ namespace Fitness.BL.Controller
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
                 // TODO: Нужно реализовать чтение пользователя, а так же случай, если его не прочитали
+            }
+        }
+
+        /// <summary>
+        /// Сохранение данных пользователя.
+        /// </summary>
+        public void Save()
+        {
+            var formatter = new BinaryFormatter();
+
+            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, User);
             }
         }
     }
