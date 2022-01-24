@@ -14,22 +14,31 @@ namespace Fitness.BL.Model
         /// Имя пользователя.
         /// </summary>
         public string Name { get; }
+
         /// <summary>
         /// Пол пользователя.
         /// </summary>
         public Gender Gender { get; }
+
         /// <summary>
         /// Дата рождения пользователя.
         /// </summary>
         public DateTime DateOfBirth { get; }
+
         /// <summary>
         /// Вес пользователя.
         /// </summary>
         public double Weight { get; set; }
+
         /// <summary>
         /// Рост пользователя.
         /// </summary>
         public double Height { get; set; }
+
+        /// <summary>
+        /// Возраст пользователя.
+        /// </summary>
+        public int Age { get { return DateTime.Now.Year - DateOfBirth.Year; } }
         #endregion
 
         /// <summary>
@@ -74,6 +83,16 @@ namespace Fitness.BL.Model
             DateOfBirth = dateOfBirth;
             Weight = weight;
             Height = height;
+        }
+
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустым.", nameof(name));
+            }
+
+            Name = name;
         }
 
         public override string ToString()

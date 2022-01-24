@@ -8,25 +8,30 @@ namespace Fitness.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение Fitness Trackers");
+            Console.WriteLine("Вас приветствует приложение Fitness Trackers!" + Environment.NewLine);
 
             Console.Write("Введите имя пользователя: ");
             var userName = Console.ReadLine();
 
-            Console.Write("Введите пол: ");
-            var gender = Console.ReadLine();
+            var userController = new UserController(userName);
 
-            Console.Write("Введите дату рождения: ");
-            var dateOfBirth = DateTime.Parse(Console.ReadLine()); //HACK: Необходимо переписать под TryParse
+            Console.WriteLine(userController.CurrentUser);
+            Console.ReadLine();
 
-            Console.Write("Введите вес: ");
-            var weight = Double.Parse(Console.ReadLine());
+            //Console.Write("Введите пол: ");
+            //var gender = Console.ReadLine();
 
-            Console.Write("Введите рост: ");
-            var height = Double.Parse(Console.ReadLine());
+            //Console.Write("Введите дату рождения: ");
+            //var dateOfBirth = DateTime.Parse(Console.ReadLine()); //HACK: Необходимо переписать под TryParse
 
-            var userController = new UserController(userName, gender, dateOfBirth, weight, height);
-            userController.Save();
+            //Console.Write("Введите вес: ");
+            //var weight = Double.Parse(Console.ReadLine());
+
+            //Console.Write("Введите рост: ");
+            //var height = Double.Parse(Console.ReadLine());
+
+            //var userController = new UserController(userName, gender, dateOfBirth, weight, height);
+            //userController.Save();
         }
     }
 }
