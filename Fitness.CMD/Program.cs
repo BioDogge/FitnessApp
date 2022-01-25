@@ -15,23 +15,55 @@ namespace Fitness.CMD
 
             var userController = new UserController(userName);
 
+            if (userController.IsNewUser)
+            {
+                Console.Write("Введите пол: ");
+                var gender = Console.ReadLine();
+
+                var dateOfBirth = ParseToDateTime();
+                var weight = ParseToDouble("вес");
+                var height = ParseToDouble("рост");
+
+                userController.SetNewUserData(gender, dateOfBirth, weight, height);
+            }
+
             Console.WriteLine(userController.CurrentUser);
-            Console.ReadLine();
+            Console.ReadKey();
+        }
 
-            //Console.Write("Введите пол: ");
-            //var gender = Console.ReadLine();
+        private static DateTime ParseToDateTime()
+        {
+            DateTime dateOfBirth;
+            while (true)
+            {
+                Console.Write("Введите дату рождения (дд.мм.гггг): ");
+                if (DateTime.TryParse(Console.ReadLine(), out dateOfBirth))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Неверно указана дата рождения.");
+                }
+            }
 
-            //Console.Write("Введите дату рождения: ");
-            //var dateOfBirth = DateTime.Parse(Console.ReadLine()); //HACK: Необходимо переписать под TryParse
+            return dateOfBirth;
+        }
 
-            //Console.Write("Введите вес: ");
-            //var weight = Double.Parse(Console.ReadLine());
-
-            //Console.Write("Введите рост: ");
-            //var height = Double.Parse(Console.ReadLine());
-
-            //var userController = new UserController(userName, gender, dateOfBirth, weight, height);
-            //userController.Save();
+        private static double ParseToDouble(string valueString)
+        {
+            while (true)
+            {
+                Console.Write($"Введите {valueString}: ");
+                if (Double.TryParse(Console.ReadLine(), out double value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"Неверно указан {valueString}.");
+                }
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Fitness.BL.Controller
 
         public User CurrentUser { get; }
 
+        public bool IsNewUser { get; } = false;
 
         /// <summary>
         /// Создание нового контроллера пользователя.
@@ -38,8 +39,20 @@ namespace Fitness.BL.Controller
             {
                 CurrentUser = new User(userName);
                 Users.Add(CurrentUser);
+                IsNewUser = true;
                 Save();
             }
+        }
+
+        public void SetNewUserData(string gender, DateTime dateOfBirth, double weight = 1, double height = 1)
+        {
+            //TODO: Реализовать проверку входных данных
+
+            CurrentUser.Gender = new Gender(gender);
+            CurrentUser.DateOfBirth = dateOfBirth;
+            CurrentUser.Weight = weight;
+            CurrentUser.Height = height;
+            Save();
         }
 
         /// <summary>
@@ -50,11 +63,20 @@ namespace Fitness.BL.Controller
         {
             var formatter = new BinaryFormatter();
 
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate)) // HACK: Программа не может прочитать файл, нужно исправить
+            var users_dat_Length = new FileInfo("users.dat");
+
+            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate)) //HACK: Программа не может прочитать пустой файл, нужно исправить
             {
-                if (formatter.Deserialize(fs) is List<User> users)
+                if (users_dat_Length.Length > 0)
                 {
-                    return users;
+                    if (formatter.Deserialize(fs) is List<User> users)
+                    {
+                        return users;
+                    }
+                    else
+                    {
+                        return new List<User>();
+                    }
                 }
                 else
                 {

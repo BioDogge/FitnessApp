@@ -9,6 +9,7 @@ namespace Fitness.BL.Model
     [Serializable]
     public class User
     {
+        //HACK: Свойства Gender и DateOfBirth незащищенные, необходимо для них добавить поля и в свойствах реализовать проверку на входные данные
         #region Свойства
         /// <summary>
         /// Имя пользователя.
@@ -18,12 +19,12 @@ namespace Fitness.BL.Model
         /// <summary>
         /// Пол пользователя.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения пользователя.
         /// </summary>
-        public DateTime DateOfBirth { get; }
+        public DateTime DateOfBirth { get; set; }
 
         /// <summary>
         /// Вес пользователя.
@@ -97,7 +98,7 @@ namespace Fitness.BL.Model
 
         public override string ToString()
         {
-            return Name;
+            return $"{Name} {Age}";
         }
     }
 }
