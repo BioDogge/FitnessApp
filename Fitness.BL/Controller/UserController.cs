@@ -63,20 +63,11 @@ namespace Fitness.BL.Controller
         {
             var formatter = new BinaryFormatter();
 
-            var users_dat_Length = new FileInfo("users.dat");
-
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate)) //HACK: Программа не может прочитать пустой файл, нужно исправить
+            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                if (users_dat_Length.Length > 0)
+                if (fs.Length > 0 && formatter.Deserialize(fs) is List<User> users)
                 {
-                    if (formatter.Deserialize(fs) is List<User> users)
-                    {
-                        return users;
-                    }
-                    else
-                    {
-                        return new List<User>();
-                    }
+                    return users;
                 }
                 else
                 {
@@ -88,7 +79,7 @@ namespace Fitness.BL.Controller
         /// <summary>
         /// Сохранение данных пользователя.
         /// </summary>
-        private void Save()
+        public void Save()
         {
             var formatter = new BinaryFormatter();
 
