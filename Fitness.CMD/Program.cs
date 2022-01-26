@@ -31,6 +31,10 @@ namespace Fitness.CMD
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Преобразование даты рождения пользователя в необходимый формат.
+        /// </summary>
+        /// <returns></returns>
         private static DateTime ParseToDateTime()
         {
             DateTime dateOfBirth;
@@ -50,6 +54,11 @@ namespace Fitness.CMD
             return dateOfBirth;
         }
 
+        /// <summary>
+        /// Преобразование веса и роста пользователя в необходимый формат.
+        /// </summary>
+        /// <param name="valueString"></param>
+        /// <returns></returns>
         private static double ParseToDouble(string valueString)
         {
             while (true)

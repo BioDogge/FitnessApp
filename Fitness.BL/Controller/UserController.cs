@@ -17,8 +17,14 @@ namespace Fitness.BL.Controller
         /// </summary>
         public List<User> Users { get; }
 
+        /// <summary>
+        /// Текущий пользователь.
+        /// </summary>
         public User CurrentUser { get; }
 
+        /// <summary>
+        /// Флаг на проверку нового пользователя.
+        /// </summary>
         public bool IsNewUser { get; } = false;
 
         /// <summary>
@@ -44,6 +50,13 @@ namespace Fitness.BL.Controller
             }
         }
 
+        /// <summary>
+        /// Добавление данных для нового пользователя.
+        /// </summary>
+        /// <param name="gender">Пол пользователя.</param>
+        /// <param name="dateOfBirth">Дата рождения пользователя.</param>
+        /// <param name="weight">Вес пользователя.</param>
+        /// <param name="height">Рост пользователя.</param>
         public void SetNewUserData(string gender, DateTime dateOfBirth, double weight = 1, double height = 1)
         {
             //TODO: Реализовать проверку входных данных
