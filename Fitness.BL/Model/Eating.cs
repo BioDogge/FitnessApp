@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fitness.BL.Model
 {
@@ -17,7 +15,7 @@ namespace Fitness.BL.Model
         public DateTime MealTime { get; }
 
         /// <summary>
-        /// Список еды.
+        /// Справочник еды и её веса.
         /// </summary>
         public Dictionary<Food, double> Foods { get; }
         
@@ -28,13 +26,13 @@ namespace Fitness.BL.Model
 
         public Eating(User user)
         {
-            User = user ?? throw new ArgumentNullException("Пользователь не может быть пустым",nameof(user));
+            User = user ?? throw new ArgumentNullException("Пользователь не может быть пустым.",nameof(user));
             MealTime = DateTime.UtcNow;
             Foods = new Dictionary<Food,double>();
         }
 
         /// <summary>
-        /// Добавление новой еды в список.
+        /// Добавление новой еды в справочник.
         /// </summary>
         /// <param name="food">Еда.</param>
         /// <param name="weight">Вес.</param>
