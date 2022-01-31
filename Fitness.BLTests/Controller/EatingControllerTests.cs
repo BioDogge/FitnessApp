@@ -1,10 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fitness.BL.Controller;
 using System;
-using System.Collections.Generic;
+using Fitness.BL.Model;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fitness.BL.Controller.Tests
 {
@@ -14,7 +12,16 @@ namespace Fitness.BL.Controller.Tests
         [TestMethod()]
         public void AddFoodTest()
         {
-            Assert.Fail();
+            var userName  = Guid.NewGuid().ToString();
+            var foodName = Guid.NewGuid().ToString();
+            var rnd = new Random();
+            var userController = new UserController(userName);
+            var eatingController = new EatingController(userController.CurrentUser);
+            var food = new Food(foodName, rnd.Next(50, 250), rnd.Next(1, 100), rnd.Next(1, 100), rnd.Next(1, 100));
+
+            eatingController.AddFood(food, 100);
+
+            Assert.AreEqual(food.Name, eatingController.Eatings.Foods.First().Key.Name);
         }
     }
 }

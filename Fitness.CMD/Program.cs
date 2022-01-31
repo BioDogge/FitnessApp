@@ -14,6 +14,7 @@ namespace Fitness.CMD
             var userName = Console.ReadLine();
 
             var userController = new UserController(userName);
+            var eatingController = new EatingController(userController.CurrentUser);
 
             if (userController.IsNewUser)
             {
@@ -26,9 +27,48 @@ namespace Fitness.CMD
 
                 userController.SetNewUserData(gender, dateOfBirth, weight, height);
             }
-
             Console.WriteLine(userController.CurrentUser);
+
+            Console.Write(Environment.NewLine);
+
+            Console.WriteLine("Что необходимо сделать?");
+            Console.WriteLine("Нажмите \"E\" чтобы ввести прием пищи");
+            var key = Console.ReadKey();
+
+            Console.Write(Environment.NewLine);
+
+            if (key.Key == ConsoleKey.E)
+            {
+                var foods = EnterEating();
+                eatingController.AddFood(foods.Food, foods.Weight);
+
+                foreach (var item in eatingController.Eatings.Foods)
+                {
+                    Console.WriteLine($"\t{item.Key} - {item.Value}");
+                }
+            }
+
             Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Добавление продукта и приема пищи пользователем.
+        /// </summary>
+        /// <returns></returns>
+        private static (Food Food, double Weight) EnterEating()
+        {
+            Console.Write("Введите имя продукта: ");
+            var nameFood = Console.ReadLine();
+
+            var calories = ParseToDouble("калорийность");
+            var proteins = ParseToDouble("количество белков");
+            var fats = ParseToDouble("количество жиров");
+            var carbohydrates = ParseToDouble("количество углеводов");
+
+            var weight = ParseToDouble("вес порции");
+            var product = new Food(nameFood, proteins, fats, carbohydrates, calories);
+
+            return (Food: product, Weight: weight);
         }
 
         /// <summary>
@@ -55,7 +95,7 @@ namespace Fitness.CMD
         }
 
         /// <summary>
-        /// Преобразование веса и роста пользователя в необходимый формат.
+        /// Преобразование вводимых польователем данных в тип "double".
         /// </summary>
         /// <param name="valueString"></param>
         /// <returns></returns>
@@ -70,7 +110,7 @@ namespace Fitness.CMD
                 }
                 else
                 {
-                    Console.WriteLine($"Неверно указан {valueString}.");
+                    Console.WriteLine($"Поле \"{valueString}\" неверно указано.");
                 }
             }
         }

@@ -5,6 +5,7 @@ namespace Fitness.BL.Model
     /// <summary>
     /// Еда и её полезные вещества.
     /// </summary>
+    [Serializable]
     public class Food
     {
         #region Свойства еды

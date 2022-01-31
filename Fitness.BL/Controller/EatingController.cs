@@ -48,24 +48,6 @@ namespace Fitness.BL.Controller
         /// <summary>
         /// Добавление приема пищи.
         /// </summary>
-        /// <param name="foodName">Название продукта.</param>
-        /// <param name="weight">Вес.</param>
-        /// <returns></returns>
-        //public bool AddFood(string foodName, double weight)
-        //{
-        //    var food = Foods.SingleOrDefault(f => f.Name == foodName);
-        //    if (food != null)
-        //    {
-        //        Eatings.Add(food, weight);
-        //        Save();
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-        /// <summary>
-        /// Добавление приема пищи с продуктами.
-        /// </summary>
         /// <param name="food">Название продукта.</param>
         /// <param name="weight">Вес.</param>
         public void AddFood(Food food, double weight)
