@@ -1,6 +1,8 @@
 ﻿using Fitness.BL.Controller;
 using Fitness.BL.Model;
 using System;
+using System.Globalization;
+using System.Resources;
 
 namespace Fitness.CMD
 {
@@ -8,9 +10,12 @@ namespace Fitness.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение Fitness Trackers!" + Environment.NewLine);
+            var culture = CultureInfo.CreateSpecificCulture("en-us");
+            var resourceManager = new ResourceManager("Fitness.CMD.Languages.Messages", typeof(Program).Assembly);
 
-            Console.Write("Введите имя пользователя: ");
+            Console.WriteLine(resourceManager.GetString("MainGreeting", culture) + Environment.NewLine);
+
+            Console.Write(resourceManager.GetString("EnterName", culture));
             var userName = Console.ReadLine();
 
             var userController = new UserController(userName);
