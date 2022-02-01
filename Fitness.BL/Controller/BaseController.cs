@@ -5,6 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fitness.BL.Controller
 {
+    /// <summary>
+    /// Абстрактный класс, реализующий сохранение и загрузку данных о пользователе.
+    /// </summary>
     public abstract class BaseController
     {
         protected void Save(string fileName, object type)

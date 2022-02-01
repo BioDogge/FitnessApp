@@ -1,9 +1,7 @@
 ﻿using Fitness.BL.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fitness.BL.Controller
 {
@@ -12,6 +10,7 @@ namespace Fitness.BL.Controller
     /// </summary>
     public class EatingController : BaseController
     {
+        #region Свойства контроллера
         /// <summary>
         /// Название файла, содержащего информацию о еде
         /// </summary>
@@ -36,6 +35,7 @@ namespace Fitness.BL.Controller
         /// Справочник употребления пищи.
         /// </summary>
         public Eating Eatings { get; }
+        #endregion
 
         public EatingController(User user)
         {
