@@ -11,10 +11,12 @@ namespace Fitness.BL.Model
     {
         //HACK: Свойства Gender и DateOfBirth незащищенные, необходимо для них добавить поля и в свойствах реализовать проверку на входные данные
         #region Свойства пользователя
+        public int Id { get; set; }
+
         /// <summary>
         /// Имя пользователя.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Пол пользователя.

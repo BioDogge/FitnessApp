@@ -10,20 +10,29 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Eating
     {
+        #region Свойства приема пищи
+        public int Id { get; set; }
+
         /// <summary>
         /// Время приема пищи.
         /// </summary>
-        public DateTime MealTime { get; }
+        public DateTime MealTime { get; set; }
 
         /// <summary>
         /// Справочник еды и её веса.
         /// </summary>
-        public Dictionary<Food, double> Foods { get; }
+        public Dictionary<Food, double> Foods { get; set; }
+
+        /// <summary>
+        /// ID Пользователя.
+        /// </summary>
+        public int UserId { get; set; }
         
         /// <summary>
         /// Пользователь.
         /// </summary>
-        public User User { get; }
+        public virtual User User { get; set; }
+        #endregion
 
         public Eating(User user)
         {

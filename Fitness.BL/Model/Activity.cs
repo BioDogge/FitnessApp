@@ -8,15 +8,17 @@ namespace Fitness.BL.Controller
     [Serializable]
     public class Activity
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Название активности.
         /// </summary>
-        public string Name { get;  }
+        public string Name { get; set; }
 
         /// <summary>
         /// Количество сожженных калорий за минуту.
         /// </summary>
-        public double CaloriesPerMinute { get; }
+        public double CaloriesPerMinute { get; set; }
 
         public Activity(string name, double caloriesPerMinute)
         {

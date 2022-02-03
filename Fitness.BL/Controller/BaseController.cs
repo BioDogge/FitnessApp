@@ -6,35 +6,20 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Fitness.BL.Controller
 {
     /// <summary>
-    /// Абстрактный класс, реализующий сохранение и загрузку данных о пользователе.
+    /// Абстрактный класс, реализующий сохранение и загрузку данных из файлов.
     /// </summary>
     public abstract class BaseController
     {
+        protected IDataSaver dataSaver = new DataBaseDataSaver();
+
         protected void Save(string fileName, object type)
         {
-            var formatter = new BinaryFormatter();
-
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, type);
-            }
+            dataSaver.Save(fileName, type);
         }
 
-        protected T Load<T>(string fileName)
+        protected T Load<T>(string fileName) where T : class
         {
-            var formatter = new BinaryFormatter();
-
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is T types)
-                {
-                    return types;
-                }
-                else
-                {
-                    return default(T);
-                }
-            }
+            return dataSaver.Load<T>(fileName);
         }
     }
 }
