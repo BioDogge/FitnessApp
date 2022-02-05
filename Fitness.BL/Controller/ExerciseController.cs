@@ -10,6 +10,7 @@ namespace Fitness.BL.Controller
     /// </summary>
     public class ExerciseController : BaseController
     {
+        #region Свойства упражнений
         /// <summary>
         /// Название файла, содержащего информацию о упражнениях.
         /// </summary>
@@ -34,6 +35,7 @@ namespace Fitness.BL.Controller
         /// Список активности.
         /// </summary>
         public List<Activity> Activities { get; }
+        #endregion
 
         public ExerciseController(User user)
         {
@@ -68,7 +70,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<Activity> GetActivities()
         {
-            return Load<List<Activity>>(ACTIVITIES_FILE_NAME) ?? new List<Activity>();
+            return Load<Activity>() ?? new List<Activity>();
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<Exercise> GetExercises()
         {
-            return Load<List<Exercise>>(EXERCISES_FILE_NAME) ?? new List<Exercise>();
+            return Load<Exercise>() ?? new List<Exercise>();
         }
 
         /// <summary>
@@ -85,8 +87,8 @@ namespace Fitness.BL.Controller
         /// </summary>
         private void Save()
         {
-            Save(EXERCISES_FILE_NAME, Exercises);
-            Save(ACTIVITIES_FILE_NAME, Activities);
+            Save(Exercises);
+            Save(Activities);
         }
     }
 }

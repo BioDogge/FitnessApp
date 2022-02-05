@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fitness.BL.Model
 {
@@ -18,10 +20,12 @@ namespace Fitness.BL.Model
         /// </summary>
         public string Name { get; set; }
 
+        public int? GenderId { get; set; }
+
         /// <summary>
         /// Пол пользователя.
         /// </summary>
-        public Gender Gender { get; set; }
+        public virtual Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения пользователя.
@@ -38,6 +42,10 @@ namespace Fitness.BL.Model
         /// </summary>
         public double Height { get; set; }
 
+        public virtual ICollection<Eating> Eatings { get; set; }
+
+        public virtual ICollection<Exercise> Exercises { get; set; }
+
         /// <summary>
         /// Возраст пользователя.
         /// </summary>
@@ -52,6 +60,12 @@ namespace Fitness.BL.Model
         /// <param name="dateOfBirth">Дата рождения пользователя.</param>
         /// <param name="weight">Вес пользователя.</param>
         /// <param name="height">Рост пользователя.</param>
+
+        public User()
+        {
+
+        }
+
         public User(string name, Gender gender, DateTime dateOfBirth, double weight, double height)
         {
             #region Проверка условий

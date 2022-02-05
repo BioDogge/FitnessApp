@@ -82,6 +82,10 @@ namespace Fitness.CMD
             }
         }
 
+        /// <summary>
+        /// Добавление упражнений пользователя.
+        /// </summary>
+        /// <returns></returns>
         private static (DateTime StartTime, DateTime FinishTime, Activity Activity) EnterExercise()
         {
             Console.Write("Введите название упражнения: ");
@@ -97,7 +101,7 @@ namespace Fitness.CMD
         }
 
         /// <summary>
-        /// Добавление продукта и приема пищи пользователем.
+        /// Добавление продукта и приема пищи пользователя.
         /// </summary>
         /// <returns></returns>
         private static (Food Food, double Weight) EnterEating()

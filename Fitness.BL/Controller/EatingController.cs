@@ -72,7 +72,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private Eating GetEatings()
         {
-            return Load<Eating>(EATINGS_FILE_NAME) ?? new Eating(user);
+            return Load<Eating>().FirstOrDefault() ?? new Eating(user);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<Food> GetFoods()
         {
-            return Load<List<Food>>(FOOD_FILE_NAME) ?? new List<Food>();
+            return Load<Food>() ?? new List<Food>();
         }
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Fitness.BL.Controller
         /// </summary>
         private void Save()
         {
-            Save(FOOD_FILE_NAME, Foods);
-            Save(EATINGS_FILE_NAME, Eatings);
+            Save(Foods);
+            Save(new List<Eating>() { Eatings});
         }
     }
 }

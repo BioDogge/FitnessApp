@@ -1,12 +1,14 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Fitness.BL.Controller
 {
     /// <summary>
-    /// Интерфейс, описывающий работу с данными в файлах.
+    /// Интерфейс, описывающий работу с данными.
     /// </summary>
     public interface IDataSaver
     {
-        void Save(string fileName, object type);
-        T Load<T>(string fileName) where T : class;
+        void Save<T>(List<T> item) where T : class;
+        List<T> Load<T>() where T : class;
     }
 }

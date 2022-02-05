@@ -76,7 +76,7 @@ namespace Fitness.BL.Controller
         /// <returns></returns>
         private List<User> GetUsersData()
         {
-            return Load<List<User>>(USER_FILE_NAME) ?? new List<User>();
+            return Load<User>() ?? new List<User>();
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Fitness.BL.Controller
         /// </summary>
         public void Save()
         {
-            Save(USER_FILE_NAME, Users);
+            Save(Users);
         }
     }
 }

@@ -34,6 +34,11 @@ namespace Fitness.BL.Model
         public virtual User User { get; set; }
         #endregion
 
+        public Eating()
+        {
+
+        }
+
         public Eating(User user)
         {
             User = user ?? throw new ArgumentNullException("Пользователь не может быть пустым.",nameof(user));

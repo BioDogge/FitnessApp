@@ -47,6 +47,11 @@ namespace Fitness.BL.Model
         public virtual User User { get; set; }
         #endregion
 
+        public Exercise()
+        {
+
+        }
+
         public Exercise(DateTime startTime, DateTime finishTime, Activity activity, User user)
         {
             //TODO: Реализовать проверку входных данных

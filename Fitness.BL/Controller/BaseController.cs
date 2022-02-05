@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fitness.BL.Controller
 {
     /// <summary>
-    /// Абстрактный класс, реализующий сохранение и загрузку данных из файлов.
+    /// Абстрактный класс, реализующий динамическое изменение способа работы с данными.
     /// </summary>
     public abstract class BaseController
     {
-        protected IDataSaver dataSaver = new DataBaseDataSaver();
+        /// <summary>
+        /// Менеджер, реализующий способ работы с данными.
+        /// </summary>
+        private readonly IDataSaver manager = new SerializeDataSaver(); //реализация EF не работает c:
 
-        protected void Save(string fileName, object type)
+        /// <summary>
+        /// Сохранение данных.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        protected void Save<T>(List<T> item) where T : class
         {
-            dataSaver.Save(fileName, type);
+            manager.Save(item);
         }
 
-        protected T Load<T>(string fileName) where T : class
+        /// <summary>
+        /// Загрузка данных.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected List<T> Load<T>() where T : class
         {
-            return dataSaver.Load<T>(fileName);
+            return manager.Load<T>();
         }
     }
 }
